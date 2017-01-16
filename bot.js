@@ -44,6 +44,7 @@ function fetchCard(card, cardCallback, responder) {
         image: card.imageUrl,
         type: card.type,
         types: card.types,
+        text: card.text,
         power: card.power,
         toughness: card.toughness,
       }, responder);
@@ -70,11 +71,16 @@ function respond() {
   for (var i = 0; i < cards.length; i++) {
     var card = cards[i];
     var sendCard = function(parsedCard, responder) {
-      var text;
+      var text = parsedCard.name + ' ' + parsedCard.manaCost + '\n';
       if (parsedCard.types.indexOf('Creature') != -1) {
-        text = parsedCard.name + ' ' + parsedCard.manaCost + '\n' + parsedCard.type + ' ' + parsedCard.power + '/' + parsedCard.toughness + '\n' + parsedCard.image;
+        text = text + parsedCard.type + ' ' + parsedCard.power + '/' + parsedCard.toughness + '\n';
       } else {
-        text = parsedCard.name + ' ' + parsedCard.manaCost + '\n' + parsedCard.type + '\n' + parsedCard.image;
+        text = text + parsedCard.type + '\n';
+      }
+      if (parsedCard.image) {
+        text = text + parsedCard.text + '\n' + parsedCard.image;
+      } else {
+        text = text + parsedCard.text;
       }
       response = {
         'text': text
