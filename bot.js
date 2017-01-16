@@ -71,15 +71,15 @@ function respond() {
   for (var i = 0; i < cards.length; i++) {
     var card = cards[i];
     var sendCard = function(parsedCard, responder) {
-      if (parsedCard.image) {
-        text = parsedCard.image + '&.jpg';
+      var text = parsedCard.name + ' ' + parsedCard.manaCost + '\n';
+      if (parsedCard.types.indexOf('Creature') != -1) {
+        text = text + parsedCard.type + ' ' + parsedCard.power + '/' + parsedCard.toughness + '\n';
       } else {
-        text = parsedCard.name + ' ' + parsedCard.manaCost + '\n';
-        if (parsedCard.types.indexOf('Creature') != -1) {
-          text = text + parsedCard.type + ' ' + parsedCard.power + '/' + parsedCard.toughness + '\n';
-        } else {
-          text = text + parsedCard.type + '\n';
-        }
+        text = text + parsedCard.type + '\n';
+      }
+      if (parsedCard.image) {
+        text = text + parsedCard.image;
+      } else {
         text = text + parsedCard.text;
       }
       response = {
