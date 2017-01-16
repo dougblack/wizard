@@ -24,7 +24,7 @@ function fetchCard(card, cardCallback, responder) {
   var link;
   return http.get({
     host: "api.magicthegathering.io",
-    path: "/v1/cards?name=\"" + encodeURI(cardName) + "\"",
+    path: "/v1/cards?name=" + encodeURI(cardName),
     method: "GET",
   }, function(response) {
     var body = '';
