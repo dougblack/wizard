@@ -1,0 +1,6 @@
+{
+  "name": "Wizard Bot",
+  "description": "Basic Groupme MtG Bot written in Node",
+  "repository": "https://github.com/dougblack/groupme-wizard",
+  "keywords": []
+}
