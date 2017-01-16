@@ -78,7 +78,7 @@ function respond() {
         text = text + parsedCard.type + '\n';
       }
       if (parsedCard.image) {
-        text = text + parsedCard.text + '\n' + parsedCard.image;
+        text = text + parsedCard.text + '\n' + parsedCard.image + '&.jpg';
       } else {
         text = text + parsedCard.text;
       }
