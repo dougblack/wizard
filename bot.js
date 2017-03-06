@@ -87,8 +87,9 @@ function respond() {
       }
       send(Promise.resolve(response), responder);
     }
-    fetchCard(card, sendCard, this);
+    return fetchCard(card, sendCard, this);
   }
+  return send(Promise.resolve({}), this);
 }
 
 /**
