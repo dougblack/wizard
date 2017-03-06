@@ -32,7 +32,11 @@ function fetchCard(card, cardCallback, responder) {
       body += d;
     });
     response.on('end', function() {
-      var parsed = JSON.parse(body);
+      try {
+        var parsed = JSON.parse(body);
+      } catch(error) {
+        return;
+      }
       var matches = parsed["cards"];
       if (matches.length == 0) {
         return;
