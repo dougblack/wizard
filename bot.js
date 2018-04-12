@@ -27,6 +27,7 @@ function fetchCard(card, cardCallback, responder) {
     path: "/v1/cards?name=" + encodeURI(cardName),
     method: "GET",
   }, function(response) {
+    console.log("Received mtg.io API response.");
     var body = '';
     response.on('data', function(d) {
       body += d;
@@ -35,6 +36,7 @@ function fetchCard(card, cardCallback, responder) {
       try {
         var parsed = JSON.parse(body);
       } catch(error) {
+        console.log("Error parsing response body: " + error);
         return;
       }
       var matches = parsed["cards"];
@@ -89,6 +91,7 @@ function respond() {
       response = {
         'text': text
       }
+      console.log(response);
       send(Promise.resolve(response), responder);
     }
     return fetchCard(card, sendCard, this);
