@@ -56,7 +56,7 @@ function fetchCard(card, cardCallback, responder) {
         toughness: card.toughness,
       }, responder);
     });
-    response.on('error'), function(e) {
+    response.on('error', function(e) {
       console.log("Got error " + e);
     });
   });
