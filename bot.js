@@ -1,5 +1,4 @@
 var HTTPS = require('https');
-var http = require('http');
 var Promise = require('promise');
 
 const botId = process.env.BOT_ID;
@@ -22,7 +21,7 @@ function fetchCard(card, cardCallback, responder) {
   var cardName = card.slice(1, -1);
   console.log(cardName);
   var link;
-  return http.get({
+  return HTTPS.get({
     host: "api.magicthegathering.io",
     path: "/v1/cards?name=" + encodeURI(cardName),
     method: "GET",
