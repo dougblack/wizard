@@ -31,6 +31,7 @@ function fetchCard(card, cardCallback, responder) {
     var body = '';
     response.on('data', function(d) {
       body += d;
+      console.log("Got data " + d);
     });
     response.on('end', function() {
       try {
@@ -54,6 +55,9 @@ function fetchCard(card, cardCallback, responder) {
         power: card.power,
         toughness: card.toughness,
       }, responder);
+    });
+    response.on('error'), function(e) {
+      console.log("Got error " + e);
     });
   });
 }
