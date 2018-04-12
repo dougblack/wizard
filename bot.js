@@ -36,7 +36,7 @@ function fetchCard(card, cardCallback, responder) {
       try {
         var parsed = JSON.parse(body);
       } catch(error) {
-        console.log("Error parsing response body: " + error);
+        console.log("Error parsing response body: " + error + "\n\nBody was: " + body);
         return;
       }
       var matches = parsed["cards"];
