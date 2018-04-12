@@ -26,17 +26,14 @@ function fetchCard(card, cardCallback, responder) {
     path: "/v1/cards?name=" + encodeURI(cardName),
     method: "GET",
   }, function(response) {
-    console.log("Received mtg.io API response.");
     var body = '';
     response.on('data', function(d) {
       body += d;
-      console.log("Got data " + d);
     });
     response.on('end', function() {
       try {
         var parsed = JSON.parse(body);
       } catch(error) {
-        console.log("Error parsing response body: " + error + "\n\nBody was: " + body);
         return;
       }
       var matches = parsed["cards"];
@@ -54,9 +51,6 @@ function fetchCard(card, cardCallback, responder) {
         power: card.power,
         toughness: card.toughness,
       }, responder);
-    });
-    response.on('error', function(e) {
-      console.log("Got error " + e);
     });
   });
 }
@@ -94,7 +88,6 @@ function respond() {
       response = {
         'text': text
       }
-      console.log(response);
       send(Promise.resolve(response), responder);
     }
     return fetchCard(card, sendCard, this);
